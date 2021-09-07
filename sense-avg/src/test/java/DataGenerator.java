@@ -2,9 +2,9 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.text.csv.*;
 import cn.hutool.core.util.StrUtil;
+import com.boyang.landsense.avg.SenseAvgApplication;
 import com.boyang.landsense.common.entity.LandSense;
 import com.boyang.landsense.common.repo.LandSenseRepo;
-import com.boyang.landsense.avg.SenseAvgApplication;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,8 +22,7 @@ public class DataGenerator {
     @Test
     public void test1() {
         CsvReader reader = CsvUtil.getReader(new CsvReadConfig().setContainsHeader(true));
-//从文件中读取CSV数据
-        CsvData data = reader.read(FileUtil.file("D:\\Projects\\mijnpark\\MijnPark-Amsterdam-LandSense.csv"));
+        CsvData data = reader.read(FileUtil.file("MijnPark-Amsterdam-LandSense.csv"));
 
         List<CsvRow> rows = data.getRows();
         List<LandSense> landSenseList = new ArrayList<>();
@@ -32,7 +31,7 @@ public class DataGenerator {
             fieldMap.forEach(new BiConsumer<String, String>() {
                 @Override
                 public void accept(String s, String s2) {
-                    if (StrUtil.isBlank(s2)) {
+                    if (StrUtil.isEmpty(s2)) {
                         fieldMap.put(s, null);
                     }
                 }
@@ -42,4 +41,5 @@ public class DataGenerator {
         }
         landSenseRepo.saveAll(landSenseList);
     }
+
 }

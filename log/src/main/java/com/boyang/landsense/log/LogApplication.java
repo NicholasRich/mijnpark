@@ -1,4 +1,4 @@
-package com.boyang.landsense.avg;
+package com.boyang.landsense.log;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -9,9 +9,9 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
 @ComponentScan({"com.boyang.landsense"})
 @EnableMongoRepositories("com.boyang.landsense.common.repo")
-public class SenseAvgApplication {
+public class LogApplication {
     public static void main(String[] args) {
-        SpringApplication.run(SenseAvgApplication.class, args);
+//        Deserializer
+        SpringApplication.run(LogApplication.class, args);
     }
 }
-

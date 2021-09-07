@@ -1,18 +1,18 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://admin:123456@34.139.235.122:27017/mijnpark?authSource=admin
+#      Change the ip to your own external ip
+      uri: mongodb://admin:123456@34.75.183.226:27017/mijnpark?authSource=admin
       field-naming-strategy: org.springframework.data.mapping.model.SnakeCaseFieldNamingStrategy
   application:
     name: sense-count
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
-#  kafka:
-#    bootstrap-servers: 34.138.176.208:9092
-#    consumer:
-#      group-id: sense-1
-#      max-poll-records: 1
-#    producer:
-#      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+  kafka:
+#    Change the ip to your own external ip
+    bootstrap-servers: 34.75.183.226:9092
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties: {spring.json.type.mapping: log:com.boyang.landsense.common.entity.Log}
 server:
   port: 8083

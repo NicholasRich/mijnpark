@@ -1,4 +1,4 @@
-package com.boyang.mujipark.kafka.controller;
+package com.boyang.landsense.log.controller;
 
 import cn.hutool.core.collection.CollUtil;
 import com.boyang.landsense.common.vo.AvgVO;
@@ -17,7 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping
-public class KafkaController {
+public class LogController {
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
     @Autowired

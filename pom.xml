@@ -23,7 +23,7 @@
     </dependencyManagement>
     <modules>
         <module>sense-avg</module>
-        <module>kafka</module>
+        <module>log</module>
         <module>common</module>
         <module>sense-count</module>
     </modules>
@@ -39,10 +39,10 @@
         <hutool.version>5.7.10</hutool.version>
     </properties>
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-security</artifactId>-->
+<!--        </dependency>-->
 <!--        <dependency>-->
 <!--            <groupId>org.springframework.boot</groupId>-->
 <!--            <artifactId>spring-boot-starter-data-jpa</artifactId>-->
