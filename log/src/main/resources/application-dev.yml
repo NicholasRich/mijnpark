@@ -3,15 +3,20 @@ server:
 spring:
   data:
     mongodb:
-#      Change the ip to your own external ip
+      #      Change the ip to your own external ip
       uri: mongodb://admin:123456@34.75.183.226:27017/mijnpark?authSource=admin
       field-naming-strategy: org.springframework.data.mapping.model.SnakeCaseFieldNamingStrategy
   kafka:
-#    Change the ip to your own external ip
+    #    Change the ip to your own external ip
     bootstrap-servers: 34.75.183.226:9092
     consumer:
       group-id: log-1
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-      properties: {spring.json.type.mapping: log:com.boyang.landsense.common.entity.Log}
+      properties: { spring.json.type.mapping: log:com.boyang.landsense.common.entity.Log }
+
   application:
     name: log
+  security:
+    user:
+      name: admin
+      password: 123456

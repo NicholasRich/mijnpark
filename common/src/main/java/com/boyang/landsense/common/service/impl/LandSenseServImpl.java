@@ -26,11 +26,10 @@ public class LandSenseServImpl implements LandSenseServ {
                 Aggregation.group("site_id", field)
                         .first("long_site").as("long_site")
                         .first("lat_site").as("lat_site")
+                        .first("site_id").as("site_id")
+                        .first(field).as("status")
                         .count().as("count"),
                 Aggregation.match(Criteria.where("_id." + field).ne(null)),
-                Aggregation.project("long_site", "lat_site", "count")
-                        .and("_id.site_id").as("site_id")
-                        .and("_id." + field).as("status"),
                 Aggregation.sort(Sort.Direction.DESC, "site_id", "status"));
         List<CountDTO> countDTOList = mongoTemplate.aggregate(aggregation, "landSense", CountDTO.class).getMappedResults();
         List<CountVO> list = new ArrayList<>();
@@ -61,8 +60,7 @@ public class LandSenseServImpl implements LandSenseServ {
                 .first("long_site").as("long_site")
                 .first("lat_site").as("lat_site")
                 .avg(field).as("avg"));
-        List<AvgVO> landSenses = mongoTemplate.aggregate(aggregation, "landSense", AvgVO.class).getMappedResults();
-        return landSenses;
+        return mongoTemplate.aggregate(aggregation, "landSense", AvgVO.class).getMappedResults();
     }
 
 }

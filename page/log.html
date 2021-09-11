@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Log</title>
+  <link rel="stylesheet" href="js/layui/css/layui.css">
+</head>
+<body>
+<blockquote class="layui-elem-quote" style="text-align: center;font-size: 40px">User access log</blockquote>
+<div class="layui-container">
+<!--  <div class="layui-row">-->
+    <table id="logTable"></table>
+<!--  </div>-->
+</div>
+
+<script src="js/layui/layui.js"></script>
+<script>
+  layui.use(['table', 'jquery'], function () {
+    var table = layui.table;
+    var $ = layui.$;
+    table.render({
+      elem: '#logTable',
+      url: 'http://127.0.0.1:8081/landsense/log',
+      headers: {landsenseToken: getCookie('landsenseToken')},
+      cols: [[ //表头
+        {field: 'queryField', title: 'query field'},
+        {field: 'count', title: 'count'}
+      ]],
+      parseData: function (res) { //res 即为原始返回的数据
+        return {
+          "code": 0,
+          "msg": 'success',
+          "count": res.length,
+          "data": res
+        };
+      },
+      error: function (error, content) {
+        console.log(11);
+        if (error.status == 0) {
+          location.href = 'login.html';
+        }
+      }
+    });
+
+    function getCookie(cname) {
+      var name = cname + "=";
+      var ca = document.cookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i].trim();
+        if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+      }
+      return "";
+    }
+  })
+</script>
+</body>
+</html>
