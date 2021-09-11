@@ -41,12 +41,18 @@
           password: $('#password').val()
         },
         success: function (data, status, xhr) {
-          document.cookie = 'landsenseToken=' + xhr.getResponseHeader('landsenseToken');
+          document.cookie = 'landsenseToken=' + xhr.getResponseHeader('landsenseToken') + ";expires=" + getExpireTime(30)
           location.href = 'log.html';
         }
       });
     });
   })
+
+  function getExpireTime(min) {
+    var exp = new Date();
+    exp.setTime(exp.getTime() + min * 60000);
+    return exp.toGMTString();
+  }
 
 </script>
 </html>
