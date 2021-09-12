@@ -13,7 +13,7 @@ import java.io.IOException;
 public class JWTAuthenticationFailureHandler implements AuthenticationFailureHandler {
     @Override
     public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
+        httpServletResponse.setStatus(401);
         httpServletResponse.setHeader("Access-Control-Allow-Origin", "*");
-        httpServletResponse.getWriter().write("Wrong user name or password");
     }
 }

@@ -15,11 +15,7 @@ public class JWTAuthenticationSuccessHandler implements AuthenticationSuccessHan
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
-
-        // 提取用户名，准备写入token
         String username = authentication.getName();
-
-        // 创建token
         String token = JWT.create().setPayload("username", username).setKey("landsense".getBytes()).sign();
         httpServletResponse.setCharacterEncoding("utf-8");
         httpServletResponse.setHeader("Access-Control-Allow-Origin", "*");

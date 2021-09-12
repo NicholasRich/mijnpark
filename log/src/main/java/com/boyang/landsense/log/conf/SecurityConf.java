@@ -1,6 +1,5 @@
 package com.boyang.landsense.log.conf;
 
-import cn.hutool.jwt.JWT;
 import com.boyang.landsense.log.filter.JWTAuthorizationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -23,18 +22,10 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .anyRequest().authenticated().and()
                 .formLogin().successHandler(jwtAuthenticationSuccessHandler).permitAll()
-//                .failureHandler(jwtAuthenticationFailureHandler).permitAll()
+                .failureHandler(jwtAuthenticationFailureHandler).permitAll()
                 .and().addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .logout()
                 .permitAll()
         ;
     }
-
-
-    public static void main(String[] args) {
-        System.out.println(JWT.of("das").getPayload("fsa"));
-    }
-
-
 }
-//loginPage("http://localhost:63342/mijnpark/page/login.html").loginProcessingUrl("/login").

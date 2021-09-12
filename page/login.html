@@ -29,8 +29,9 @@
 
 <script src="js/layui/layui.js"></script>
 <script>
-  layui.use(['jquery'], function () {
+  layui.use(['jquery', 'layer'], function () {
     var $ = layui.$;
+    var layer = layui.layer;
 
     $('.btn-lg').click(function () {
       $.ajax({
@@ -43,6 +44,11 @@
         success: function (data, status, xhr) {
           document.cookie = 'landsenseToken=' + xhr.getResponseHeader('landsenseToken') + ";expires=" + getExpireTime(30)
           location.href = 'log.html';
+        },
+        error: function (xhr, status) {
+          if (xhr.status == 401) {
+            layer.msg('wrong username or password', {icon: 5});
+          }
         }
       });
     });

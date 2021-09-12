@@ -15,16 +15,10 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
-        try {
-            String token = request.getHeader("landsenseToken");
-            if (JWT.of(token).setKey("landsense".getBytes()).verify()) {
-                String username = (String) JWT.of(token).getPayload("username");
-                SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(username, null, null));
-                response.setHeader("Access-Control-Allow-Origin", "*");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
+        String token = request.getHeader("landsenseToken");
+        if (JWT.of(token).setKey("landsense".getBytes()).verify()) {
+            String username = (String) JWT.of(token).getPayload("username");
+            SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(username, null, null));
             chain.doFilter(request, response);
         }
     }
