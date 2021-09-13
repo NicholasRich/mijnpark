@@ -22,7 +22,7 @@ public class DataGenerator {
     @Test
     public void test1() {
         CsvReader reader = CsvUtil.getReader(new CsvReadConfig().setContainsHeader(true));
-        CsvData data = reader.read(FileUtil.file("MijnPark-Amsterdam-LandSense.csv"));
+        CsvData data = reader.read(FileUtil.file("../../MijnPark-Amsterdam-LandSense.csv"));
 
         List<CsvRow> rows = data.getRows();
         List<LandSense> landSenseList = new ArrayList<>();
