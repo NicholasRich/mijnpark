@@ -164,6 +164,7 @@
     function getAvgMap(field) {
       layer.load(1, {shade: 0.3});
       $.get('http://127.0.0.1:8082/landsense/avg/' + field, function (result) {
+      // $.get('http://34.75.183.226/landsense/avg/' + field, function (result) {
         setCenterAndData(result, 'avg', field);
         option.series.dimensions = ['', '', '', field];
         option.series.encode = {tooltip: [3]};
@@ -180,6 +181,7 @@
     function getCountMap(field) {
       layer.load(1, {shade: 0.3});
       $.get('http://127.0.0.1:8083/landsense/count/' + field, function (result) {
+      // $.get('http://34.75.43.229/landsense/count/' + field, function (result) {
         setCenterAndData(result, 'count', field);
         option.series.dimensions = ['', '', '', 'proportion', 'true', 'false'];
         option.series.encode = {tooltip: [3, 4, 5]};
