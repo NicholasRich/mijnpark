@@ -1,0 +1,18 @@
+spring:
+  data:
+    mongodb:
+      #      Change the ip to your own external ip
+      uri: mongodb://admin:123456@10.142.0.4:27017/mijnpark?authSource=admin
+      field-naming-strategy: org.springframework.data.mapping.model.SnakeCaseFieldNamingStrategy
+  application:
+    name: sense-avg
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+  kafka:
+    #    Change the ip to your own external ip
+    bootstrap-servers: 10.142.0.4:9092
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties: {spring.json.type.mapping: log:com.boyang.landsense.common.entity.Log}
+server:
+  port: 80
