@@ -14,6 +14,5 @@ public class JWTAuthenticationFailureHandler implements AuthenticationFailureHan
     @Override
     public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
         httpServletResponse.setStatus(401);
-        httpServletResponse.setHeader("Access-Control-Allow-Origin", "*");
     }
 }

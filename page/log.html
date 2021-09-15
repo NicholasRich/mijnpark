@@ -24,11 +24,11 @@
       url: 'http://127.0.0.1:8081/landsense/log',
       // url: 'http://34.73.251.42/landsense/log',
       headers: {landsenseToken: landsenseToken},
-      cols: [[ //表头
+      cols: [[
         {field: 'queryField', title: 'query field'},
         {field: 'count', title: 'count'}
       ]],
-      parseData: function (res) { //res 即为原始返回的数据
+      parseData: function (res) {
         return {
           "code": 0,
           "msg": 'success',
@@ -39,9 +39,8 @@
       done: function () {
         document.cookie = 'landsenseToken=' + landsenseToken + ';expires=' + getExpireTime(30);
       },
-      error: function (error, content) {
-        console.log(11);
-        if (error.status == 0) {
+      error: function (xhr, status) {
+        if (xhr.status == 401) {
           location.href = 'login.html';
         }
       }

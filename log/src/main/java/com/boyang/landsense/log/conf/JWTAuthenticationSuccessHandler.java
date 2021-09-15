@@ -17,9 +17,6 @@ public class JWTAuthenticationSuccessHandler implements AuthenticationSuccessHan
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
         String username = authentication.getName();
         String token = JWT.create().setPayload("username", username).setKey("landsense".getBytes()).sign();
-        httpServletResponse.setCharacterEncoding("utf-8");
-        httpServletResponse.setHeader("Access-Control-Allow-Origin", "*");
-        httpServletResponse.setHeader("Access-Control-Expose-Headers","*");
         httpServletResponse.setHeader("landsenseToken", token);
     }
 }
